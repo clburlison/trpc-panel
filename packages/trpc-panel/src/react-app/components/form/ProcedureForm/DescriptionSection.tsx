@@ -38,7 +38,12 @@ export function DocumentationSection({
                         {`${key}: `}
                       </td>
                       <td className="pl-4 text-sm text-gray-500 py-2">
-                        {`${value}`}
+                        {value.split("\n").map((line, index) => (
+                          <React.Fragment key={index}>
+                            {line}
+                            <br />
+                          </React.Fragment>
+                        ))}
                       </td>
                     </tr>
                   )

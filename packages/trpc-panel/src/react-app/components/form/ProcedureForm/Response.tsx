@@ -31,6 +31,11 @@ export function Response({
           maxDisplayLength={100}
           groupArraysAfterLength={500}
           indentWidth={2}
+          onCopy={async (_, value) => {
+            await navigator.clipboard.writeText(
+              JSON.stringify(value, null, 2).slice(1, -1)
+            );
+          }}
         />
       </FormSection>
     );
