@@ -16,7 +16,7 @@ const SharedProcedureDefPropertiesSchema = z.object({
 
 const QueryDefSchema = SharedProcedureDefPropertiesSchema.merge(
   z.object({
-    query: z.literal(true),
+    type: z.literal('query'),
   })
 );
 
@@ -28,7 +28,7 @@ type QueryDef = z.infer<typeof QueryDefSchema>;
 
 const MutationDefSchema = SharedProcedureDefPropertiesSchema.merge(
   z.object({
-    mutation: z.literal(true),
+    type: z.literal('mutation'),
   })
 );
 
@@ -40,7 +40,7 @@ export type MutationDef = z.infer<typeof MutationDefSchema>;
 
 const SubscriptionDefSchema = SharedProcedureDefPropertiesSchema.merge(
     z.object({
-        subscription: z.literal(true),
+        type: z.literal('subscription'),
     })
 );
 
@@ -77,7 +77,7 @@ const RouterSchema = z.object({
 });
 
 export function isRouter(obj: unknown): obj is Router {
-  return RouterSchema.safeParse(obj).success;
+  return RouterSchema.safeParse(obj).success || !isProcedure(obj);
 }
 
 const ProcedureSchema = z.object({
