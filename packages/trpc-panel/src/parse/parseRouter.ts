@@ -1,6 +1,6 @@
 import { Router, isRouter, isProcedure } from "./routerType";
 
-import { Router as TRPCRouter } from "@trpc/server";
+import { AnyTRPCRouter } from "@trpc/server";
 import { zodToJsonSchema } from "zod-to-json-schema";
 import { logParseError } from "./parseErrorLogs";
 import { ParsedProcedure, parseProcedure } from "./parseProcedure";
@@ -67,7 +67,7 @@ export type TrpcPanelExtraOptions = {
 };
 
 export function parseRouterWithOptions(
-  router: TRPCRouter<any>,
+  router: AnyTRPCRouter,
   parseRouterOptions: TrpcPanelExtraOptions
 ) {
   if (!isRouter(router)) {

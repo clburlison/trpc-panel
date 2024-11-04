@@ -1,4 +1,4 @@
-import { Router } from "@trpc/server";
+import { AnyTRPCRouter } from "@trpc/server";
 import fs from "fs";
 import { fileURLToPath } from "node:url";
 import { dirname } from "node:path";
@@ -62,7 +62,7 @@ let cache: {
   val: null,
 };
 
-export function renderTrpcPanel(router: Router<any>, options: RenderOptions) {
+export function renderTrpcPanel(router: AnyTRPCRouter, options: RenderOptions) {
   if (options.cache === true && cache.val) return cache.val;
 
   const bundleInjectionParams: InjectionParam[] = [
